@@ -1,0 +1,18 @@
+.charts-area {
+    margin-top: 80px;
+    padding-top: 20px;
+    min-height: 500px;
+    height: auto;
+
+
+    -webkit-box-shadow: -14px 16px 4px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:    -14px 16px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow:         -14px 16px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+
+.tab-content > div {
+    margin-top: 20px;
+    min-height: 500px;
+    height: auto;
+}
