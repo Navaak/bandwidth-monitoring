@@ -100,11 +100,11 @@ def login():
 
 
 
-# @app.route('/logout')
-# def logout():
-#     redirect_to_login = redirect('/home')
-#     response = current_app.make_response(redirect_to_login)
-#     response.delete_cookie("username_cookie")
-#     response.delete_cookie("password_cookie")
-#     redirect_to_login = redirect('/')
-#     return response
+@app.route('/logout')
+def logout():
+    redirect_to_login = redirect('/home')
+    response = current_app.make_response(redirect_to_login)
+    response.delete_cookie("username_cookie")
+    response.delete_cookie("password_cookie")
+    redirect_to_login = redirect('/')
+    return response
