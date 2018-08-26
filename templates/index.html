@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Application Server Traffic Monitoring</title>
+        <title>Streaming Server Monitoring</title>
 
         <script src="static/js/highcharts.src.js"></script>
         <script src="static/js/data.js"></script>
@@ -45,14 +45,12 @@
                 <div class="col-lg-10 col-lg-offset-1">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Application Server Traffic" aria-controls="Application Server Traffic" role="tab" data-toggle="tab">Application Server Traffic</a></li>
-
-                        <li role="presentation" class="active"><a href="#Streaming Server Traffic" aria-controls="Streaming Server Traffic" role="tab" data-toggle="tab">Streaming Server Traffic</a></li>
+                        <li role="presentation" class="active"><a href="#Streaming Server" aria-controls="Streaming Server" role="tab" data-toggle="tab">Streaming Server</a></li>
 
                     </ul>
 
 
-                        <div role="tabpanel" class="tab-pane active" id="Application Server Traffic"></div>
+                        <div role="tabpanel" class="tab-pane active" id="Streaming Server"></div>
                         <div role="tabpanel" class="tab-pane" id="month"></div>
 
                           <ol>
@@ -90,7 +88,7 @@
         <script src="/static/js/bootstrap.min.js"></script>
         <script type="text/javascript">
 
-        Highcharts.chart('Application Server Traffic', {
+        Highcharts.chart('Streaming Server', {
           chart: {
             type: 'column',
             zoomType: 'xy'
@@ -98,7 +96,7 @@
           },
        
           title: {
-            text: 'Application Server Traffic monitoring'
+            text: 'Streaming Server monitoring'
           },
 
           xAxis: {
@@ -109,7 +107,7 @@
           yAxis: {
             min: 0,
             title: {
-              text: 'Application Server Traffic (GB)'
+              text: 'Streaming Server (GB)'
             }
           },
   

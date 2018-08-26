@@ -19,7 +19,7 @@ def checkAccount(username, password):
 
 @app.before_request
 def before_request():
-    g.db = sqlite3.connect("bandwidth_jalali.db")
+    g.db = sqlite3.connect("bandwidth.db")
 
 
 @app.teardown_request
@@ -35,7 +35,7 @@ def hello():
 
     if password == ADMIN_PASS_HASH:
 
-        data = g.db.execute("select * from jalali;")
+        data = g.db.execute("select * from daily;")
         g.db.commit()
         dates = []
         RX = []
