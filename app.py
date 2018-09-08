@@ -4,6 +4,7 @@ from flask import render_template, request, Response, redirect, current_app
 from flask import g , json
 app = Flask(__name__)
 
+import test
 
 ADMIN_USER = 'admin'
 ADMIN_PASS_HASH = '67b70652178547867b6488f7548ff1ca'
@@ -17,19 +18,19 @@ def checkAccount(username, password):
         return False
 
 
-@app.before_request
-def before_request():
-    g.db = sqlite3.connect("bandwidth_jalali.db")
+# @app.before_request
+# def before_request():
+#     g.db = sqlite3.connect("bandwidth_jalali.db")
 
 
-@app.teardown_request
-def teardown_request(exception):
-    if hasattr(g, 'db'):
-        g.db.close()
+# @app.teardown_request
+# def teardown_request(exception):
+#     if hasattr(g, 'db'):
+#         g.db.close()
 
 
 @app.route('/home')
-def hello():
+def return_charts_data():
 
     password = request.cookies.get('password_cookie')
 
@@ -108,3 +109,4 @@ def logout():
     response.delete_cookie("password_cookie")
     redirect_to_login = redirect('/')
     return response
+
