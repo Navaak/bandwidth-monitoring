@@ -28,16 +28,16 @@ def return_charts_data():
 
     if password == ADMIN_PASS_HASH:
         
-        data1 = read_daily_info_from_db.get_daily_info()
+        data1  = read_daily_info_from_db.get_daily_info()
         dates1 = data1[0]
-        RX1 = data1[1]
-        TX1 = data1[2]
+        RX1    = data1[1]
+        TX1    = data1[2]
 
 
-        data2 = create_month_info.month_info()
+        data2  = create_month_info.month_info()
         dates2 = data2[0]
-        RX2 = data2[1]
-        TX2 = data2[2]
+        RX2    = data2[1]
+        TX2    = data2[2]
 
         return render_template('index.html', 
             dates=json.dumps(dates1) , RX=json.dumps(RX1) , TX=json.dumps(TX1),
@@ -75,7 +75,7 @@ def login():
             return response 
 
         else:
-            # respomse erro to user
+            # response error to user
             return render_template('login.html', error='invalid-credential')
 
 
@@ -91,7 +91,6 @@ def login():
 
         else:
             return render_template('login.html')
-
 
 
 

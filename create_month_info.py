@@ -45,11 +45,11 @@ def get_month_info_from_daily_info():
 
 
 
-
 def month_info():
+    
     dates = []
-    RX = []
-    TX = []
+    RX    = []
+    TX    = []
     
     data = get_month_info_from_daily_info()
    

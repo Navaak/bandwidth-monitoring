@@ -3,7 +3,6 @@ from sqlite3 import Error
 import jdatetime
 
 
-
 def create_connection(db_file):
 
     try:
@@ -42,11 +41,13 @@ def convert_dates(conn):
         RX = row[1]
         TX = row[2]
 
-
         date = jdatetime.date.fromgregorian(day=day, month=month, year=year)
         jalali_list.append((str(date), RX, TX))
    
     return(jalali_list)
+
+
+# Write jalali info into database
 
 conn_module = create_connection('bandwidth.db')
 data = convert_dates(conn_module)
