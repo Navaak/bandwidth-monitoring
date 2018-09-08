@@ -5,14 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Streaming Server Monitoring</title>
+        <title>Traffic Monitoring</title>
 
         <script src="static/js/highcharts.src.js"></script>
         <script src="static/js/data.js"></script>
         <script src="static/js/drilldown.js"></script>
         <script src="static/js/exporting.js"></script>
         <script src="static/js/export-data.js"></script>
-        <script src="https://code.highcharts.com/stock/highstock.js"></script>
 
 
         <!-- Bootstrap -->
@@ -30,9 +29,12 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Bandwidth Monitoring</a>
+                <a class="navbar-brand" href="#">Traffic MOnitoring</a>
               </div>
               <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li><a href="#about">About</a></li>
+                </ul>
                 <ul class="nav navbar-nav">
                   <li><a href="/logout">Logout</a></li>
                 </ul>
@@ -45,39 +47,28 @@
                 <div class="col-lg-10 col-lg-offset-1">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Streaming Server" aria-controls="Streaming Server" role="tab" data-toggle="tab">Streaming Server</a></li>
+                        
+                        <li role="presentation" class="active"><a href="#Streaming_Server_Daily" aria-controls="Streaming_Server_Daily" role="tab" data-toggle="tab">Streaming Server Daily</a></li>
+
+                        <li role="presentation"><a href="#Streaming_Server_Monthly" aria-controls="Streaming_Server_Monthly" role="tab" data-toggle="tab">Streaming Server Monthly</a></li>
 
                     </ul>
 
 
-                        <div role="tabpanel" class="tab-pane active" id="Streaming Server"></div>
-                        <div role="tabpanel" class="tab-pane" id="month"></div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="Streaming_Server_Daily"></div>
+                        <div role="tabpanel" class="tab-pane active" id="Streaming_Server_Monthly"></div>
 
-                          <ol>
-                          {% for item in albums_name %}
-                              <li>
-                                {{ item }}: (
-                                <a href="/weekly/albums/sales/{{item}}" target="_blank"> weekly </a>,
-                                <a href="/monthly/albums/sales/{{item}}"  target="_blank"> monthly </a>)
-                              </li>
-                          {% endfor %}
-                          </ol>
                         </div>                    
                         
                 </div>
             </div>
         </div>
 
-        <style>
-          xAxis: {
-          categories: xlist,
-          min: 0,
-          max: 4,
-          scrollbar: {
-                enabled: true
-          },
-          },        
-        </style>
+
+
+
 
         <footer></footer>
 
@@ -87,8 +78,8 @@
         <script src="/static/js/jquery.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-
-        Highcharts.chart('Streaming Server', {
+ 
+        Highcharts.chart('Streaming_Server_Daily', {
           chart: {
             type: 'column',
             zoomType: 'xy'
@@ -138,24 +129,26 @@
           }]
         });
 
-        Highcharts.chart('Streaming Server Traffic', {
+        Highcharts.chart('Streaming_Server_Monthly', {
           chart: {
-            type: 'column'
+            type: 'column',
+            zoomType: 'xy'
+
           },
        
           title: {
-            text: 'Streaming Server Traffic monitoring'
+            text: 'Streaming Server monitoring'
           },
 
           xAxis: {
-            categories: {{ dates | safe }},
+            categories: {{ dates2 | safe }},
             crosshair: true
           },
      
           yAxis: {
             min: 0,
             title: {
-              text: 'Streaming Server Traffic (GB)'
+              text: 'Streaming Server (GB)'
             }
           },
   
@@ -177,16 +170,15 @@
         
           series: [{
             name: 'rx',
-            data: {{ RX | safe }}
+            data: {{ RX2 | safe }}
 
           }, {
             name: 'tx',
-            data: {{ TX | safe }}
+            data: {{ TX2 | safe }}
 
           }]
         });
+
         </script> 
-
-
   </body>
 </html>

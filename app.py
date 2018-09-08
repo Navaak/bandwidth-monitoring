@@ -1,15 +1,17 @@
 from flask import Flask 
-import sqlite3, hashlib, datetime
+import hashlib
 from flask import render_template, request, Response, redirect, current_app
-from flask import g , json
-app = Flask(__name__)
+from flask import json
+import jdatetime, datetime
+import create_month_info
+import read_daily_info_from_db
 
-import test
+app = Flask(__name__)
 
 ADMIN_USER = 'admin'
 ADMIN_PASS_HASH = '67b70652178547867b6488f7548ff1ca'
-
 # password = Sa$Hna7aacK90
+
 
 def checkAccount(username, password):
     if username == ADMIN_USER and password == ADMIN_PASS_HASH:
@@ -18,16 +20,6 @@ def checkAccount(username, password):
         return False
 
 
-# @app.before_request
-# def before_request():
-#     g.db = sqlite3.connect("bandwidth_jalali.db")
-
-
-# @app.teardown_request
-# def teardown_request(exception):
-#     if hasattr(g, 'db'):
-#         g.db.close()
-
 
 @app.route('/home')
 def return_charts_data():
@@ -35,19 +27,21 @@ def return_charts_data():
     password = request.cookies.get('password_cookie')
 
     if password == ADMIN_PASS_HASH:
+        
+        data1 = read_daily_info_from_db.get_daily_info()
+        dates1 = data1[0]
+        RX1 = data1[1]
+        TX1 = data1[2]
 
-        data = g.db.execute("select * from jalali;")
-        g.db.commit()
-        dates = []
-        RX = []
-        TX = []
 
-        for i in data:
-            dates.append(i[0])
-            RX.append(i[1])
-            TX.append(i[2])
+        data2 = create_month_info.month_info()
+        dates2 = data2[0]
+        RX2 = data2[1]
+        TX2 = data2[2]
 
-        return render_template('index.html', dates=json.dumps(dates) , RX=json.dumps(RX) , TX=json.dumps(TX))
+        return render_template('index.html', 
+            dates=json.dumps(dates1) , RX=json.dumps(RX1) , TX=json.dumps(TX1),
+            dates2=json.dumps(dates2) , RX2=json.dumps(RX2) , TX2=json.dumps(TX2))
 
     else:
         
