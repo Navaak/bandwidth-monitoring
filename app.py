@@ -1,7 +1,6 @@
 from flask import Flask 
+from flask import render_template, request, Response, redirect, current_app, json
 import hashlib
-from flask import render_template, request, Response, redirect, current_app
-from flask import json
 import jdatetime, datetime
 import create_month_info
 import read_daily_info_from_db
@@ -39,8 +38,9 @@ def return_charts_data():
         RX2    = data2[1]
         TX2    = data2[2]
 
+
         return render_template('index.html', 
-            dates=json.dumps(dates1) , RX=json.dumps(RX1) , TX=json.dumps(TX1),
+            dates1=json.dumps(dates1) , RX1=json.dumps(RX1) , TX1=json.dumps(TX1),
             dates2=json.dumps(dates2) , RX2=json.dumps(RX2) , TX2=json.dumps(TX2))
 
     else:

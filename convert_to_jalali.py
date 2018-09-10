@@ -17,15 +17,15 @@ def create_connection(db_file):
 
 
 def convert_dates(conn):
+  
+    jalali_list = []
 
     cur = conn.cursor()
+    cur.execute("ATTACH DATABASE 'bandwidth.db' as daily;")
     cur.execute("select * from daily;")
 
     rows = cur.fetchall()
-
-    
-    jalali_list = []
-    
+  
     for row in rows:
 
         year = int(row[0][0:4])
@@ -49,6 +49,7 @@ def convert_dates(conn):
 
 # Write jalali info into database
 
+
 conn_module = create_connection('bandwidth.db')
 data = convert_dates(conn_module)
 conn = sqlite3.connect('bandwidth_jalali.db')
@@ -63,3 +64,4 @@ for item in data:
     conn.commit()
 
 conn.close()
+

@@ -91,7 +91,7 @@
           },
 
           xAxis: {
-            categories: {{ dates | safe }},
+            categories: {{ dates1 | safe }},
             crosshair: true
           },
      
@@ -120,11 +120,11 @@
         
           series: [{
             name: 'rx',
-            data: {{ RX | safe }}
+            data: {{ RX1 | safe }}
 
           }, {
             name: 'tx',
-            data: {{ TX | safe }}
+            data: {{ TX1 | safe }}
 
           }]
         });
