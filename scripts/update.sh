@@ -1,7 +1,10 @@
 #!/bin/bash
+
+# This script delete old database and update daily database from server with rsync
+
 echo  "##################"
-echo "bandwidth info sync started at:"
-date +%c
+echo  "bandwidth info sync started at:"
+date  +%c
 echo  "##################"
 
 
@@ -19,8 +22,7 @@ rsync -azP --stats --progress --times --delete sls-streamer:/home/navaak/bandwid
 python3 convert_to_jalali.py
 
 
-
 echo  "##################"
-echo "bandwidth info sync ended at:"
-date +%c
+echo  "bandwidth info sync ended at:"
+date  +%c
 echo  "##################"

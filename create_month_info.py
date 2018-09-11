@@ -3,16 +3,18 @@ import jdatetime
 
 today = jdatetime.date.today()
 today = str(today)
+current_year = int(str(today)[0:4])
+
 
 def get_month_info_from_daily_info():
-
+    
+    month_list = [] 
+    
     conn = sqlite3.connect('bandwidth_jalali.db')
-    cur = conn.cursor()
+    cur  = conn.cursor()
     cur.execute("ATTACH DATABASE 'bandwidth_jalali.db' as jalali;")
 
-    month_list = []
-    
-    for year in range(1395, 1398):
+    for year in range(1395, current_year+1):
         for month in range(1 , 10):
             x = "(date > '{0}-0{1}-01' and date <= '{0}-0{1}-31');".format(year, month)
             query = "select sum(rx), sum(tx) from jalali where {0}".format(x)
@@ -26,8 +28,8 @@ def get_month_info_from_daily_info():
     
             
         for month in range(10, 13):
-            x = "(date > '{0}-{1}-01' and date <= '{0}-{1}-31');".format(year, month)
-            query = "select sum(rx), sum(tx) from jalali where {0}".format(x)
+            tmp_date = "(date > '{0}-{1}-01' and date <= '{0}-{1}-31');".format(year, month)
+            query = "select sum(rx), sum(tx) from jalali where {0}".format(tmp_date)
 
             cur.execute(query)
             data = cur.fetchall()
@@ -42,8 +44,8 @@ def get_month_info_from_daily_info():
     conn.close()
 
 
-
 def month_info():
+    
     data  = []
     dates = []
     RX    = []

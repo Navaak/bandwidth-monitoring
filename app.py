@@ -1,15 +1,13 @@
-from flask import Flask 
-from flask import render_template, request, Response, redirect, current_app, json
-import hashlib
-import jdatetime, datetime
-import create_month_info
-import read_daily_info_from_db
+from flask import Flask, render_template, request, Response, redirect, current_app, json
+import hashlib, jdatetime, datetime
+import create_month_info, read_daily_info_from_db, config
+
 
 app = Flask(__name__)
 
-ADMIN_USER = 'admin'
-ADMIN_PASS_HASH = '67b70652178547867b6488f7548ff1ca'
-# password = Sa$Hna7aacK90
+
+ADMIN_USER = config.user
+ADMIN_PASS_HASH = config.password
 
 
 def checkAccount(username, password):
@@ -17,7 +15,6 @@ def checkAccount(username, password):
         return True
     else:
         return False
-
 
 
 @app.route('/home')

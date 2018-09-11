@@ -1,6 +1,5 @@
-import sqlite3
+import sqlite3, jdatetime
 from sqlite3 import Error
-import jdatetime
 
 
 def create_connection(db_file):
@@ -48,8 +47,6 @@ def convert_dates(conn):
 
 
 # Write jalali info into database
-
-
 conn_module = create_connection('bandwidth.db')
 data = convert_dates(conn_module)
 conn = sqlite3.connect('bandwidth_jalali.db')
@@ -57,7 +54,7 @@ conn = sqlite3.connect('bandwidth_jalali.db')
 cur = conn.cursor()
 
 cur.execute('''CREATE TABLE jalali
-             (date text, RX real, TX real)''')
+            (date text, RX real, TX real)''')
 
 for item in data:
     cur.execute("INSERT INTO jalali VALUES ('{0}',{1},{2})".format(item[0], item[1], item[2]))
