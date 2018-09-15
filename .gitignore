@@ -16,5 +16,6 @@ _mailinglist
 .idea/
 docs/_build/
 
-.db
+bandwidth.db
+bandwidth_jalali.db
 scripts/update.sh
