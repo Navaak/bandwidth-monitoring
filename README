@@ -1,0 +1,10 @@
+BandWidth Monitoring
+
+I use netstat in this project. Our chanllenge was that we wanted to have our servers traffic behavior in long time such as 2years or more. In the other hand we wanted to have them in charts for a simple analyzing system behavour. 
+
+For using this system, 
+1. install netstat and sqlite
+2. put scripts/bandwidth.sh in a cronjob for running daily. It will create bandwidth.db 
+3. put your own network info into the bandwidth.sh 
+4. install and run flask 
+
