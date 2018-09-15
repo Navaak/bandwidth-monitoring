@@ -6,6 +6,26 @@ today = str(today)
 current_year = int(str(today)[0:4])
 
 
+def get_daily_info():
+
+    conn = sqlite3.connect('bandwidth_jalali.db')
+    cur = conn.cursor()
+    cur.execute("ATTACH DATABASE 'bandwidth_jalali.db' as jalali;")
+   
+    data  = cur.execute("select * from jalali;")
+    dates = []
+    RX    = []
+    TX    = []
+
+    for i in data:
+        dates.append(i[0])
+        RX.append(i[1])
+        TX.append(i[2])
+
+    return(dates, RX, TX)
+
+
+
 def get_month_info_from_daily_info():
     
     month_list = [] 

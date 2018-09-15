@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, redirect, current_app, json
 import hashlib, jdatetime, datetime
-import create_month_info, read_daily_info_from_db, config
+import jalali_charts_info, gregorian_charts_info, read_daily_info_from_db, config
 
 
 app = Flask(__name__)
@@ -8,6 +8,11 @@ app = Flask(__name__)
 
 ADMIN_USER = config.user
 ADMIN_PASS_HASH = config.password
+
+#### If you want to have gegorian date form in your charts uncomment gregorian 
+DATE = "gregorian"
+# DATE = "jalali"
+    
 
 
 def checkAccount(username, password):
@@ -24,13 +29,20 @@ def return_charts_data():
 
     if password == ADMIN_PASS_HASH:
         
-        data1  = read_daily_info_from_db.get_daily_info()
+        if DATE == "jalali" :
+            date_form = jalali_charts_info
+
+        elif DATE == "gregorian":
+            date_form =  gregorian_charts_info
+
+
+        data1  = date_form.get_daily_info()
         dates1 = data1[0]
         RX1    = data1[1]
         TX1    = data1[2]
 
 
-        data2  = create_month_info.month_info()
+        data2  = date_form.month_info()
         dates2 = data2[0]
         RX2    = data2[1]
         TX2    = data2[2]
