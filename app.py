@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, redirect, current_app, json
 import hashlib, jdatetime, datetime
-import jalali_charts_info, gregorian_charts_info, read_daily_info_from_db, config
+import jalali_charts_info, gregorian_charts_info, config
 
 
 app = Flask(__name__)
