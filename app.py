@@ -10,8 +10,8 @@ ADMIN_USER = config.user
 ADMIN_PASS_HASH = config.password
 
 #### If you want to have gegorian date form in your charts uncomment gregorian 
-DATE = "gregorian"
-# DATE = "jalali"
+# DATE = "gregorian"
+DATE = "jalali"
     
 
 
